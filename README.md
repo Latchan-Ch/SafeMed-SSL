@@ -6,7 +6,7 @@
 
 Official PyTorch implementation of the paper: **"Uncertainty-Guided Semi-Supervised Learning for Safe Medical Image Classification in Low-Resource Settings"**.
 
-Submitted to **SASIGD 2026** (Track 2: AI for Healthcare and Well-being).
+Submitted to **SASIGD 2026** 
 
 ## Problem Statement
 In low-resource healthcare settings, obtaining expert-labeled medical images is expensive and time-consuming. Standard Semi-Supervised Learning (SSL) methods like FixMatch can fail silently, classifying ambiguous images with high confidence but incorrectly.
@@ -40,7 +40,7 @@ data/
 
 ### 1. Installation
 ```bash
-git clone [https://github.com/YourUsername/SafeMed-SSL.git](https://github.com/YourUsername/SafeMed-SSL.git)
+git clone [https://github.com/Latchan-Ch/SafeMed-SSL.git](https://github.com/Latchan-Ch/SafeMed-SSL.git)
 cd SafeMed-SSL
 pip install -r requirements.txt
 
