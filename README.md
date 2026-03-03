@@ -74,7 +74,8 @@ cd SafeMed-SSL
 2. Training the Model
 3. Evaluate and Use
 
- Authors
+ **Authors:**
+ 
 Latchan Chhetri - Dept. of AI & DS, Sikkim Manipal Institute of Technology (SMIT)
 
 Aman Kumar - Dept. of AI & DS, SMIT
