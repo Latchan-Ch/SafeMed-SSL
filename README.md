@@ -42,18 +42,12 @@ data/
 ```bash
 git clone [https://github.com/Latchan-Ch/SafeMed-SSL.git](https://github.com/Latchan-Ch/SafeMed-SSL.git)
 cd SafeMed-SSL
-pip install -r requirements.txt
 
 ```
 
 ### 2. Training
 
-To train the model with the Uncertainty-Guided strategy:
-
-```bash
-python train.py --dataset malaria --n-labeled 20 --seed 5 --use-uncertainty
-
-```
+To train the model with the Uncertainty-Guided strategy, see our notebook 
 
 ## Authors
 
