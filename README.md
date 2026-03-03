@@ -2,7 +2,6 @@
 
 # SafeMed-SSL: Uncertainty-Guided Semi-Supervised Learning for Safe Medical Image Classification
 
-[![Conference](https://img.shields.io/badge/SASIGD-2026-blue?style=for-the-badge)](https://sasigd.org/)
 [![Framework](https://img.shields.io/badge/PyTorch-2.0-orange?style=for-the-badge&logo=pytorch)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
