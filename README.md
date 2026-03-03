@@ -1,68 +1,95 @@
+<div align="center">
+
 # SafeMed-SSL: Uncertainty-Guided Semi-Supervised Learning for Safe Medical Image Classification
 
-[![Conference](https://img.shields.io/badge/SASIGD-2026-blue)](https://sasigd.cbit.ac.in/)
-[![Framework](https://img.shields.io/badge/PyTorch-2.0-orange)](https://pytorch.org/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Conference](https://img.shields.io/badge/SASIGD-2026-blue?style=for-the-badge)](https://sasigd.org/)
+[![Framework](https://img.shields.io/badge/PyTorch-2.0-orange?style=for-the-badge&logo=pytorch)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-Official PyTorch implementation of the paper: **"Uncertainty-Guided Semi-Supervised Learning for Safe Medical Image Classification in Low-Resource Settings"**.
+*An official PyTorch implementation for robust and safe medical image classification in low-resource settings.*
 
-Submitted to **SASIGD 2026** 
+</div>
+
+---
 
 ## Problem Statement
-In low-resource healthcare settings, obtaining expert-labeled medical images is expensive and time-consuming. Standard Semi-Supervised Learning (SSL) methods like FixMatch can fail silently, classifying ambiguous images with high confidence but incorrectly.
+In resource-constrained healthcare environments, expert medical image annotation is expensive and time-consuming. While Semi-Supervised Learning (SSL) reduces this burden, standard SSL methods (like FixMatch) suffer from **Silent Failures**—classifying ambiguous images incorrectly but with high confidence.
 
-**Our Solution:** We introduce an **Uncertainty-Guided Safety Filter** that uses MC Dropout to estimate model uncertainty. It rejects ambiguous pseudo-labels even if the model is confident, significantly reducing the **Silent Failure Rate (SFR)**.
+**Our Solution:** We introduce an **Uncertainty-Guided Safety Filter** that leverages Monte Carlo Dropout. By rejecting ambiguous pseudo-labels based on both confidence and uncertainty, we significantly reduce overconfident clinical errors.
 
-## Key Features
-- **Dual-Path Architecture:** Combines standard Supervised Learning (20% data) with Uncertainty-Guided SSL (80% data).
-- **Safety Mechanism:** Filters unlabeled samples based on both **Confidence (>0.70)** and **Uncertainty (<0.2)**.
-- **Low-Resource Optimized:** Designed for lightweight backbones (ResNet-18) suitable for edge deployment.
+---
 
-## Results (Malaria Screening)
-| Method | Accuracy | Silent Failure Rate (SFR) |
-| :--- | :--- | :--- |
-| Supervised Baseline (20% Labels) | 94.12% | 2.50% |
-| FixMatch (Standard SSL) | 95.89% | 2.47% |
-| **Ours (SafeMed-SSL)** | **96.53%** | **1.77%** |
+##  Key Contributions
+- ** Dual-Path Architecture:** Seamlessly integrates standard Supervised Learning (20% data) with an Uncertainty-Guided SSL teacher-student model (80% unlabeled data).
+- ** Two-Layer Safety Mechanism:** Filters unreliable predictions using a strict criteria.
+- ** Low-Resource Optimized:** Built on a lightweight ResNet-18 backbone, making it highly suitable for edge deployment in rural clinics.
 
-> **Impact:** We achieved a **29.2% reduction in silent failures** ($p=0.0137$), preventing potentially dangerous misdiagnoses.
+<div align="center">
+  <img src="final_architecture_drawio.png" alt="SafeMed-SSL Architecture Diagram" width="800"/>
+  <br>
+  <em>Figure 1: The SafeMed-SSL Framework. Unlabeled data passes through a safety filter before pseudo-labels are generated.</em>
+</div>
+
+---
+
+## Results & Clinical Impact
+
+We evaluated our framework on the task of Malaria Cell Classification. Our method outperforms standard SSL baselines by specifically targeting dangerous "silent failures."
+
+| Method | Accuracy | AUC | Silent Failure Rate (SFR) |
+| :--- | :---: | :---: | :---: |
+| Supervised Baseline (20% Labels) | 96.7% | 0.989 | 2.01% |
+| FixMatch (Standard SSL, τ=0.80) | 96.4% | 0.991 | 2.50% |
+| **Ours (SafeMed-SSL)** | **96.6%** | **0.991** | **1.77%** |
+
+> **Impact:** We achieved a statistically significant **29.2% reduction in silent failures** ($p=0.0137$), directly preventing dangerous misdiagnoses.
+
+<div align="center">
+  <img src="FINAL_PAPER_GRAPH_N6.jpeg" alt="Clinical Robustness Graph" width="600"/>
+  <br>
+  <em>Figure 2: Clinical Robustness. SafeMed-SSL (blue) maintains a consistently low failure rate across varying thresholds compared to standard methods (red).</em>
+</div>
+
+---
 
 ## Dataset
-We used the **NIH Malaria Cell Images Dataset**, which contains 27,558 images of parasitized and uninfected cells.
-- **Download:** [Kaggle Link](https://www.kaggle.com/datasets/iarunava/cell-images-for-detecting-malaria)
-- **Structure:**
+This project uses the **NIH Malaria Cell Images Dataset**.
+* **Total Images:** 27,558 (13,779 Parasitized / 13,779 Uninfected)
+* **Source:** [Download from Kaggle](https://www.kaggle.com/datasets/iarunava/cell-images-for-detecting-malaria)
+
+**Data Structure:**
+```
 data/
-├── Parasitized/
-└── Uninfected/
-
-
-## Usage
-
-### 1. Installation
-```bash
-git clone [https://github.com/Latchan-Ch/SafeMed-SSL.git](https://github.com/Latchan-Ch/SafeMed-SSL.git)
-cd SafeMed-SSL
-
+└── malaria/
+    ├── Parasitized/
+    └── Uninfected/
 ```
 
-### 2. Training
+**Quick Start:**
+1. Installation
+Clone the repository and install the required dependencies:
+```
+git clone [https://github.com/Latchan-Ch/SafeMed-SSL.git](https://github.com/Latchan-Ch/SafeMed-SSL.git)
+cd SafeMed-SSL
+```
+2. Training the Model
+3. Evaluate and Use
 
-To train the model with the Uncertainty-Guided strategy, see our notebook 
+ Authors
+Latchan Chhetri - Dept. of AI & DS, Sikkim Manipal Institute of Technology (SMIT)
 
-## Authors
+Aman Kumar - Dept. of AI & DS, SMIT
 
-* **Latchan Chhetri** (Dept. of AI & DS, SMIT)
-* **Aman Kumar** (Dept. of AI & DS, SMIT)
-* **Hrishikesh Das** (Dept. of CSE, SMIT)
+Hrishikesh Das - Dept. of CSE, SMIT
 
-## Citation
-
-If you find this work useful, please cite our paper:
-
-```bibtex
-@inproceedings{safemed2026,
+ Citation
+If you find this code or our methodology useful in your research, please consider citing our paper:
+```
+Code snippet
+@inproceedings{chhetri2026safemed,
   title={Uncertainty-Guided Semi-Supervised Learning for Safe Medical Image Classification in Low-Resource Settings},
   author={Chhetri, Latchan and Kumar, Aman and Das, Hrishikesh},
   booktitle={2026 International Conference on Sustainable AI for Social Impact and Global Development (SASIGD)},
-  year={2026}
+  year={2026},
+  organization={IEEE}
 }
