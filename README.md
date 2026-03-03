@@ -24,7 +24,7 @@ In resource-constrained healthcare environments, expert medical image annotation
 - ** Low-Resource Optimized:** Built on a lightweight ResNet-18 backbone, making it highly suitable for edge deployment in rural clinics.
 
 <div align="center">
-  <img src="final_architecture_drawio.png" alt="SafeMed-SSL Architecture Diagram" width="800"/>
+  <img src="final_architecture.drawio.png" alt="SafeMed-SSL Architecture Diagram" width="800"/>
   <br>
   <em>Figure 1: The SafeMed-SSL Framework. Unlabeled data passes through a safety filter before pseudo-labels are generated.</em>
 </div>
