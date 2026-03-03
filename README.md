@@ -82,7 +82,7 @@ Aman Kumar - Dept. of AI & DS, SMIT
 
 Hrishikesh Das - Dept. of CSE, SMIT
 
- Citation
+ **Citation:**
 If you find this code or our methodology useful in your research, please consider citing our paper:
 ```
 Code snippet
